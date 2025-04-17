@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Test@123
+      MYSQL_DATABASE: bankappdb
+    ports:
+      - "3306:3306"
+    networks:
+      - bankapp-network
+
+  bankapp:
+    image: bankapp
+    container_name: bankapp
+    restart: on-failure
+    depends_on:
+      - mysql
+    ports:
+      - "8082:8080"
+    networks:
+      - bankapp-network
+
+networks:
+  bankapp-network:
