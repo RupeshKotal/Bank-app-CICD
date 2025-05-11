@@ -11,11 +11,11 @@ pipeline {
     }
 
     stages {
-        // stage('Git Checkout') {
-        //     steps {
-        //         git branch: 'main', credentialsId: 'git', url: 'https://github.com/jaiswaladi246/Mega-Project-CI.git'
-        //     }
-        // }
+        stage('Git Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/RupeshKotal/Bank-app-CICD.git'
+            }
+        }
         
         stage('Compile') {
             steps {
