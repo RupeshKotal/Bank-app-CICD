@@ -64,7 +64,7 @@ pipeline {
         
         stage('Publish To Nexus') {
             steps {
-                withMaven(globalMavenSettingsConfig: 'devopsshack', maven: 'maven3', traceability: true) {
+                withMaven(globalMavenSettingsConfig: 'maven-config', maven: 'maven3', traceability: true) {
                     sh "mvn deploy"
                 }
             }
