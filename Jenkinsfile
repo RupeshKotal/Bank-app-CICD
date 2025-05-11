@@ -107,7 +107,7 @@ pipeline {
                             git clone https://github.com/RupeshKotal/Ultimate-mega-project.git
                             
                             # Update the image tag in the manifest.yaml file
-                            cd Mega-Project-CD
+                            cd Ultimate-mega-project/Mega-Project-CD-main/Mega-Project-CD-main
                             sed -i "s|ruxs123/bankapp:.*|ruxs123/bankapp:${IMAGE_TAG}|" Manifest/manifest.yaml
                             
                             # Confirm changes
