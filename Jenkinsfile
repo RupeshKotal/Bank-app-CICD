@@ -102,10 +102,12 @@ pipeline {
                     // Clean workspace before starting
                     cleanWs()
 
-                    sh '''
+                   withCredentials([usernamePassword(credentialsId: 'git', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                        sh '''
                             # Clone the Mega-Project-CD repository
-                            git clone https://github.com/RupeshKotal/Ultimate-mega-project.git
+                            git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/RupeshKotal/Ultimate-mega-project.git
                             
+
                             # Update the image tag in the manifest.yaml file
                             cd Ultimate-mega-project/Mega-Project-CD-main/Mega-Project-CD-main
                             sed -i "s|ruxs123/bankapp:.*|ruxs123/bankapp:${IMAGE_TAG}|" Manifest/manifest.yaml
@@ -121,6 +123,7 @@ pipeline {
                             git commit -m "Update image tag to ${IMAGE_TAG}"
                             git push origin main
                         '''
+                    }
                     
                 }
             }
