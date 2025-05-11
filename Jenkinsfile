@@ -82,7 +82,7 @@ pipeline {
         
         stage('Scan Image') {
             steps {
-                sh "trivy image --format table -o image-report.html adijaiswal/bankapp:$IMAGE_TAG"
+                sh "trivy image --format table -o image-report.html ruxs123/bankapp:$IMAGE_TAG"
             }
         }
         
