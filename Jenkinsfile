@@ -102,7 +102,7 @@ pipeline {
                     // Clean workspace before starting
                     cleanWs()
 
-                  withCredentials([usernamePassword(credentialsId: 'git', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_TOKEN')]) {
+                  withCredentials([usernamePassword(credentialsId: 'git-cred', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USER')]) {
     sh '''
         git clone https://github.com/RupeshKotal/Ultimate-mega-project.git
         cd Ultimate-mega-project
