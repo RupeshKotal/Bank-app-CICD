@@ -74,7 +74,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred') {
-                        sh "docker build -t adijaiswal/bankapp:$IMAGE_TAG ."
+                        sh "docker build -t ruxs123/bankapp:$IMAGE_TAG ."
                     }
                 }
             }
@@ -90,7 +90,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred') {
-                        sh "docker push adijaiswal/bankapp:$IMAGE_TAG"
+                        sh "docker push ruxs123/bankapp:$IMAGE_TAG"
                     }
                 }
             }
