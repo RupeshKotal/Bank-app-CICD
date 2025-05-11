@@ -105,7 +105,7 @@ pipeline {
                   withCredentials([usernamePassword(credentialsId: 'git-cred', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USER')]) {
     sh '''
         git clone https://github.com/RupeshKotal/Ultimate-mega-project.git
-        cd Ultimate-mega-project
+        cd Ultimate-mega-project/Mega-Project-CD-main/Mega-Project-CD-main
 
         sed -i "s|ruxs123/bankapp:.*|ruxs123/bankapp:${IMAGE_TAG}|" Manifest/manifest.yaml
         git config user.name "Jenkins"
