@@ -102,28 +102,21 @@ pipeline {
                     // Clean workspace before starting
                     cleanWs()
 
-                   withCredentials([usernamePassword(credentialsId: 'git', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                        sh '''
-                            # Clone the Mega-Project-CD repository
-                            git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/RupeshKotal/Ultimate-mega-project.git
-                            
+                  withCredentials([usernamePassword(credentialsId: 'git', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_TOKEN')]) {
+    sh '''
+        git clone https://github.com/RupeshKotal/Ultimate-mega-project.git
+        cd Ultimate-mega-project
 
-                            # Update the image tag in the manifest.yaml file
-                            cd Ultimate-mega-project/Mega-Project-CD-main/Mega-Project-CD-main
-                            sed -i "s|ruxs123/bankapp:.*|ruxs123/bankapp:${IMAGE_TAG}|" Manifest/manifest.yaml
-                            
-                            # Confirm changes
-                            echo "Updated manifest file contents:"
-                            cat Manifest/manifest.yaml
-                            
-                            # Commit and push the changes
-                            git config user.name "Jenkins"
-                            git config user.email "jenkins@example.com"
-                            git add Manifest/manifest.yaml
-                            git commit -m "Update image tag to ${IMAGE_TAG}"
-                            git push origin main
-                        '''
-                    }
+        sed -i "s|ruxs123/bankapp:.*|ruxs123/bankapp:${IMAGE_TAG}|" Manifest/manifest.yaml
+        git config user.name "Jenkins"
+        git config user.email "jenkins@example.com"
+        git add Manifest/manifest.yaml
+        git commit -m "Update image tag to ${IMAGE_TAG}"
+
+        git remote set-url origin https://${GIT_USER}:${GIT_TOKEN}@github.com/RupeshKotal/Ultimate-mega-project.git
+        git push origin main
+    '''
+}
                     
                 }
             }
